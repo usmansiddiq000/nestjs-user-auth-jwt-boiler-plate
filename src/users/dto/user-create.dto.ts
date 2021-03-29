@@ -13,7 +13,7 @@ export class CreateUserDto {
     @IsEmail()
     readonly email: string
 
-    readonly role: string
+    role: string[]
 
-    readonly activeJwt: string
+    activeJwt: string
 }

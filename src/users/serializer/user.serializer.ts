@@ -4,7 +4,7 @@ export class UserSerializer {
     firstName: string
     lastName: string
     email: string
-    role: string
+    role: string[]
     token: string
 
     @Transform(({value}) => value.toString())

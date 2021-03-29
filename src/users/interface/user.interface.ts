@@ -7,6 +7,6 @@ export interface IUser extends Document {
     email: string
     password: string
     activeJwts: string[]
-    role: string
+    role: string[]
     token: string
 }

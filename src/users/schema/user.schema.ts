@@ -19,8 +19,8 @@ export class User extends Document {
   @Prop({select: false })
   activeJwts: string[]
 
-  @Prop({ type: String, enum: ['admin', 'member'], default: 'member' })
-  role: string
+  @Prop({ type: [String], enum: ['admin', 'member'], default: ['member'] })
+  role: string[]
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
