@@ -22,7 +22,10 @@ export class UsersService {
     }
 
     async login(data: LoginUserDto): Promise <IUser> {
-        const user  = await this.getByEmail(data.email);
+        const user = await this.userModel.findOne({email:data.email}).select('+password');
+        if(!user) throw new Error('User not found');
+        const isMatch = await user.comparePassword(data.password);
+        if(!isMatch) throw new Error('password not matches');
         return user;
     }
 }

@@ -9,4 +9,6 @@ export interface IUser extends Document {
     activeJwts: string[]
     role: string[]
     token: string
+
+    comparePassword(string): Promise<boolean>;
 }

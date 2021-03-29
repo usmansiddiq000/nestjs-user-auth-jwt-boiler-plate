@@ -1,6 +1,7 @@
 import { Schema,Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HookNextFunction } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { promisify } from 'util';
 
 @Schema()
 export class User extends Document {
@@ -39,7 +40,7 @@ UserSchema.pre('save', async function(next: HookNextFunction) {
       }
 })
 
-UserSchema.methods.comparePassword = function (password, callback) {
-    bcrypt.compare(password, this.password, (err, isMatch) => callback(err, isMatch));
+UserSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compareSync(password, this.password);
 };
 

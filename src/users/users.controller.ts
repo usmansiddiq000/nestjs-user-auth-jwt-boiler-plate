@@ -50,13 +50,13 @@ export class UsersController {
     @UseInterceptors(ClassSerializerInterceptor)
     async login(@Body() body : LoginUserDto): Promise<UserSerializer> {
         try{
-            const user = await this.userService.login(body);
-            const newUser  =  user.toJSON()
-            newUser.token = this.jwtService.sign(newUser);
-            return new UserSerializer (newUser);
+            const user = await this.userService.login(body); 
+            const userJson  =  user.toJSON()
+            userJson.token = this.jwtService.sign(userJson);
+            return new UserSerializer (userJson);
         }
         catch(error) {
-            throw new HttpException('Error', HttpStatus.EXPECTATION_FAILED);
+            throw new HttpException(error.message, HttpStatus.EXPECTATION_FAILED);
         }
     }
 }
