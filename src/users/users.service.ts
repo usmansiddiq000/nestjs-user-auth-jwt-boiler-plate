@@ -13,11 +13,11 @@ export class UsersService {
         return await this.userModel.create(user);
     }
 
-    async getAll():Promise<IUser[]> {
+    async getAll(): Promise<IUser[]> {
         return await this.userModel.find({});
     }
 
-    async getByEmail(email:string){
+    async getByEmail(email:string): Promise<IUser>{
         return this.userModel.findOne({email})
     }
 
@@ -26,9 +26,3 @@ export class UsersService {
         return user;
     }
 }
-
-
-// sign token in controller , on signup and sign on login in service or as you like, 
-// create global middle ware, if token is there attach user to request object
-// create global auth guard based on role, and assign role or no role to every method based on requirment  (using decorator)
-// create role Decorator and use it for all method
