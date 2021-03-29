@@ -1,7 +1,6 @@
 import { Schema,Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HookNextFunction } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { promisify } from 'util';
 
 @Schema()
 export class User extends Document {
